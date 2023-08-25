@@ -13,3 +13,5 @@ RUN go install -v github.com/go-delve/delve/cmd/dlv@latest
 WORKDIR /workspaces/${PROJECT}/src/zkid
 RUN go test -v
 
+CMD go run .
+

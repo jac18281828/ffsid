@@ -63,7 +63,6 @@ func TestEasyToFactor(t *testing.T) {
 		factor := big.NewInt(i)
 		isPrime := IsPrime(factor, N)
 		easyToFactor := EasyToFactor(factor)
-		println(i, isPrime, easyToFactor)
 		if isPrime && easyToFactor {
 			if isPrime {
 				t.Errorf("Expected %d to be prime", i)

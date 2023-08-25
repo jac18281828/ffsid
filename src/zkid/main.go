@@ -106,7 +106,7 @@ func VictorProof(publicKey []*big.Int, Y *big.Int, challenge *big.Int, n *big.In
 func main() {
 
 	// n will not be a secret and factorization only needs to be valid on
-	// the timescale of the proof, values > 1024 bits are recommended
+	// the timescale of the proof, values >= 1024 bits are recommended
 	const nbits = 1024
 	const k_round = 16
 	const t_round = 4
@@ -140,7 +140,7 @@ func main() {
 		if victor_expect.Cmp(X) != 0 {
 			fmt.Println("X: ", X.String())
 			fmt.Println("expect: ", victor_expect.String())
-			panic("Victor's proof is invalid")
+			panic("Peggy's proof is invalid")
 		}
 		round_count += k_round
 		proof_valid = proof_valid.Lsh(proof_valid, k_round)
@@ -149,5 +149,5 @@ func main() {
 	if proof_valid.Cmp(big.NewInt(1<<20)) < 0 {
 		panic("Victor can not verify the proof")
 	}
-	fmt.Println("Peggy and Victor agree with confidence 2 to", round_count, " or 1:", proof_valid.String())
+	fmt.Println("Peggy and Victor agree with confidence 2 to", round_count, "or 1 in", proof_valid.String())
 }
